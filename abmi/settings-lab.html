@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - Settings Lab</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./settings-lab.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="settings-header">
+            <div class="header-content">
+                <h1><i class="fas fa-cogs"></i> Settings Lab</h1>
+                <div class="security-status">
+                    <span class="status-indicator secure">
+                        <i class="fas fa-shield-alt"></i> System Secure
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Security Card Section -->
+            <section class="security-card-section">
+                <div class="security-card">
+                    <div class="card-header">
+                        <h2>PC Security Dashboard</h2>
+                        <div class="card-actions">
+                            <button class="action-btn add-pc" id="addPcBtn">
+                                <i class="fas fa-plus"></i> Add PC
+                            </button>
+                            <button class="action-btn reset-password" id="resetPasswordBtn">
+                                <i class="fas fa-key"></i> Reset Password
+                            </button>
+                            <button class="action-btn delete-pc" id="deletePcBtn">
+                                <i class="fas fa-trash"></i> Delete PC
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <!-- PC List will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add PC Modal -->
+            <div class="modal" id="addPcModal">
+                <div class="modal-content">
+                    <h2>Add New PC</h2>
+                    <form id="addPcForm">
+                        <div class="form-group">
+                            <label>PC Name</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Biometric Enrollment</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="biometricToggle">
+                                <label for="biometricToggle"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Role Permissions</label>
+                            <div class="permission-matrix">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Create PC</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Password Reset Modal -->
+            <div class="modal" id="resetPasswordModal">
+                <div class="modal-content">
+                    <h2>Reset Password</h2>
+                    <div class="reset-steps">
+                        <div class="step" id="step1">
+                            <h3>Select PC</h3>
+                            <input type="text" placeholder="Search PC..." id="pcSearch">
+                            <div class="pc-list">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="step" id="step2">
+                            <h3>Security Verification</h3>
+                            <div class="security-challenge">
+                                <!-- 2FA and CAPTCHA will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="step" id="step3">
+                            <h3>New Password</h3>
+                            <div class="password-strength-meter">
+                                <input type="password" id="newPassword">
+                                <div class="strength-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete PC Modal -->
+            <div class="modal danger-zone" id="deletePcModal">
+                <div class="modal-content">
+                    <h2>Delete PC</h2>
+                    <div class="delete-confirmation">
+                        <p>This action cannot be undone. Please type "DELETE" to confirm:</p>
+                        <input type="text" id="deleteConfirmation" placeholder="Type DELETE">
+                        <div class="hardware-verification">
+                            <p>Please verify with your hardware token:</p>
+                            <div class="token-input">
+                                <!-- Hardware token verification will be loaded here -->
+                            </div>
+                        </div>
+                        <button class="delete-btn" disabled>Delete PC</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="mentorship-lab.html" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Mentorship</span>
+            </a>
+            <a href="certificate-lab.html" class="nav-item">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+            <a href="school-lab.html" class="nav-item">
+                <i class="fas fa-school"></i>
+                <span>School Lab</span>
+            </a>
+            <a href="leadership-lab.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Leadership</span>
+            </a>
+            <a href="settings-lab.html" class="nav-item active">
+                <i class="fas fa-cogs"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <!-- Toast Notifications Container -->
+        <div id="toastContainer"></div>
+    </div>
+
+    <!-- Required Libraries -->
+    <script src="https://unpkg.com/@react-spring/web"></script>
+    <script src="https://unpkg.com/react-advanced-form"></script>
+    <script src="https://unpkg.com/react-confetti"></script>
+    <script src="https://unpkg.com/framer-motion"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="./settings-lab.js"></script>
+</body>
+</html> 

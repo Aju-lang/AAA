@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - Leadership Lab</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="leadership-lab.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="navigation.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Student Profile Modal -->
+        <div id="studentProfileModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="student-profile">
+                    <div class="profile-header">
+                        <img src="" alt="Student" class="profile-avatar">
+                        <div class="profile-info">
+                            <h2 class="student-name"></h2>
+                            <p class="student-class"></p>
+                            <p class="student-points"></p>
+                        </div>
+                    </div>
+                    <div class="performance-charts">
+                        <div class="chart-container">
+                            <h3>Weekly Progress</h3>
+                            <canvas id="weeklyProgressChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Subject Performance</h3>
+                            <canvas id="subjectPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Points History Section -->
+                    <div class="points-history">
+                        <h3><i class="fas fa-history"></i> Points History</h3>
+                        <div class="history-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="achievements">
+                        <h3>Achievements</h3>
+                        <div class="achievement-grid">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <section class="leadership-overview">
+                <h1><i class="fas fa-trophy"></i> Leadership Board</h1>
+
+                <!-- Category Cards -->
+                <div class="category-grid">
+                    <div class="category-card" data-category="hs">
+                        <h3>High School</h3>
+                        <p>Classes 8-10</p>
+                        <div class="top-student">
+                            <img src="https://ui-avatars.com/api/?name=Karthik+B" alt="Top Student">
+                            <div class="student-info">
+                                <span class="name">Karthik B</span>
+                                <span class="points">150 points</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card" data-category="up">
+                        <h3>Upper Primary</h3>
+                        <p>Classes 5-7</p>
+                        <div class="top-student">
+                            <img src="https://ui-avatars.com/api/?name=Kavya+M" alt="Top Student">
+                            <div class="student-info">
+                                <span class="name">Kavya M</span>
+                                <span class="points">130 points</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card" data-category="lp">
+                        <h3>Lower Primary</h3>
+                        <p>Classes 1-4</p>
+                        <div class="top-student">
+                            <img src="https://ui-avatars.com/api/?name=Tanya+D" alt="Top Student">
+                            <div class="student-info">
+                                <span class="name">Tanya D</span>
+                                <span class="points">140 points</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card" data-category="overall">
+                        <h3>Overall</h3>
+                        <p>All Classes</p>
+                        <div class="top-student">
+                            <img src="https://ui-avatars.com/api/?name=Karthik+B" alt="Top Student">
+                            <div class="student-info">
+                                <span class="name">Karthik B</span>
+                                <span class="points">150 points</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard Section -->
+                <div class="leaderboard-section">
+                    <div class="leaderboard-header">
+                        <h2>High School Leaderboard</h2>
+                        <div class="leaderboard-controls">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="studentSearch" placeholder="Search students...">
+                            </div>
+                            <select id="categoryFilter">
+                                <option value="hs">High School</option>
+                                <option value="up">Upper Primary</option>
+                                <option value="lp">Lower Primary</option>
+                                <option value="overall">Overall</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="leaderboard-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardBody">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="mentorship-lab.html" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Mentorship</span>
+            </a>
+            <a href="certificate-lab.html" class="nav-item">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+            <a href="school-lab.html" class="nav-item">
+                <i class="fas fa-school"></i>
+                <span>School Lab</span>
+            </a>
+            <a href="leadership-lab.html" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Leadership</span>
+            </a>
+            <a href="about-me.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </a>
+        </nav>
+    </div>
+    <script src="leadership-lab.js"></script>
+</body>
+</html> 

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary Data Management</title>
+    <link rel="stylesheet" href="pc-primary-data.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialize EmailJS with your public key
+            emailjs.init("WtEwqmNDMUx-D0JrX");
+            console.log("EmailJS initialized with public key");
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-database"></i> Primary Data Management</h1>
+        
+        <!-- Search and Filter Section -->
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search students...">
+            <select id="classFilter">
+                <option value="">All Classes</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <!-- Add more classes as needed -->
+            </select>
+            <select id="divisionFilter">
+                <option value="">All Divisions</option>
+                <option value="A">Division A</option>
+                <option value="B">Division B</option>
+                <option value="C">Division C</option>
+                <!-- Add more divisions as needed -->
+            </select>
+        </div>
+
+        <!-- PDF Upload Section -->
+        <div class="card upload-section">
+            <h2><i class="fas fa-file-upload"></i> Upload Student Data</h2>
+            <div class="upload-container">
+                <label for="pdfUpload" class="upload-label">
+                    <i class="fas fa-file-pdf"></i> Choose PDF File
+                </label>
+                <input type="file" id="pdfUpload" accept=".pdf">
+                <button id="uploadBtn"><i class="fas fa-upload"></i> Upload</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <div id="uploadStatus"></div>
+        </div>
+
+        <!-- Manual Entry Section -->
+        <div class="card manual-entry">
+            <h2><i class="fas fa-user-plus"></i> Manual Student Entry</h2>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" placeholder="Enter student name" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">Class</label>
+                    <select id="studentClass" required>
+                        <option value="">Select Class</option>
+                        <option value="X Science">X Science</option>
+                        <option value="X Commerce">X Commerce</option>
+                        <option value="XI Science">XI Science</option>
+                        <option value="XI Commerce">XI Commerce</option>
+                        <option value="XII Science">XII Science</option>
+                        <option value="XII Commerce">XII Commerce</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentDivision">Division</label>
+                    <input type="text" id="studentDivision" placeholder="Enter division" required>
+                </div>
+                <div class="form-group">
+                    <label for="parentName">Parent Name</label>
+                    <input type="text" id="parentName" placeholder="Enter parent name" required>
+                </div>
+                <div class="form-group">
+                    <label for="place">Place</label>
+                    <input type="text" id="place" placeholder="Enter place" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number">
+                </div>
+                <button type="submit"><i class="fas fa-plus"></i> Add Student</button>
+            </form>
+        </div>
+
+        <!-- Student List Section -->
+        <div class="card student-list">
+            <h2><i class="fas fa-users"></i> Student List</h2>
+            <div id="studentList"></div>
+        </div>
+
+        <button onclick="window.location.href='pc-dashboard.html'" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script>
+        // Initialize students array in localStorage if it doesn't exist
+        if (!localStorage.getItem('students')) {
+            localStorage.setItem('students', JSON.stringify([]));
+        }
+
+        // Function to generate secure password
+        function generateSecurePassword(studentName) {
+            // Remove spaces and special characters from name
+            const cleanName = studentName.replace(/[^a-zA-Z0-9]/g, '');
+            // Generate random 4-digit number
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            // Combine name and number
+            return `${cleanName}${randomNum}`;
+        }
+
+        // Function to send welcome email
+        async function sendWelcomeEmail(studentName, email, password) {
+            try {
+                console.log("=== Email Sending Debug Info ===");
+                console.log("1. EmailJS Configuration:");
+                console.log("- Service ID:", 'service_1bchbeb');
+                console.log("- Template ID:", 'template_6dr1z5p');
+                console.log("- Public Key:", 'WtEwqmNDMUx-D0JrX');
+                
+                console.log("\n2. Recipient Information:");
+                console.log("- Student Name:", studentName);
+                console.log("- Email:", email);
+                
+                // Validate email before sending
+                if (!isValidEmail(email)) {
+                    throw new Error('Invalid email format');
+                }
+
+                // Match exactly with the template parameters
+                const templateParams = {
+                    to_name: studentName,
+                    username: studentName,
+                    password: password,
+                    to_email: email
+                };
+
+                console.log("\n3. Template Parameters:");
+                console.log(JSON.stringify(templateParams, null, 2));
+
+                console.log("\n4. Sending Email...");
+                // Send email using EmailJS
+                const response = await emailjs.send(
+                    'service_1bchbeb',
+                    'template_6dr1z5p',
+                    templateParams
+                );
+                
+                console.log("\n5. EmailJS Response:");
+                console.log(JSON.stringify(response, null, 2));
+                
+                if (response.status === 200) {
+                    console.log('\n6. Email Status: SUCCESS');
+                    showToast(`Welcome email sent successfully to ${email}!`, 'success');
+                    return true;
+                } else {
+                    throw new Error('Email sending failed with status: ' + response.status);
+                }
+            } catch (error) {
+                console.error('\n6. Email Status: ERROR');
+                console.error('Error details:', error);
+                showToast('Error sending welcome email: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('studentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                // Validate form fields
+                const studentName = document.getElementById('studentName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const studentClass = document.getElementById('studentClass').value;
+                const division = document.getElementById('studentDivision').value.trim();
+                const parentName = document.getElementById('parentName').value.trim();
+                const place = document.getElementById('place').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+
+                console.log("Form submitted with email:", email);
+
+                // Validate required fields
+                if (!studentName || !email || !studentClass || !division || !parentName || !place) {
+                    showToast('Please fill in all required fields', 'error');
+                    return;
+                }
+
+                // Validate email format
+                if (!isValidEmail(email)) {
+                    showToast('Please enter a valid email address', 'error');
+                    return;
+                }
+
+                // Verify email is a valid Gmail address
+                if (!email.endsWith('@gmail.com')) {
+                    showToast('Please enter a valid Gmail address', 'error');
+                    return;
+                }
+
+                const generatedPassword = generateSecurePassword(studentName);
+                console.log("Generated password for", studentName, ":", generatedPassword);
+                
+                const student = {
+                    id: Date.now(),
+                    name: studentName,
+                    class: studentClass,
+                    division: division,
+                    parentName: parentName,
+                    place: place,
+                    email: email,
+                    phone: phone,
+                    password: generatedPassword,
+                    createdAt: new Date().toISOString(),
+                    isActive: true,
+                    lastPasswordChange: new Date().toISOString()
+                };
+
+                // Get existing students
+                const students = JSON.parse(localStorage.getItem('students')) || [];
+                
+                // Check if email already exists
+                if (students.some(s => s.email === student.email)) {
+                    showToast('Email already registered!', 'error');
+                    return;
+                }
+
+                // Add new student
+                students.push(student);
+                localStorage.setItem('students', JSON.stringify(students));
+                
+                // Send welcome email immediately after student is added
+                console.log("Attempting to send welcome email to:", email);
+                const emailSent = await sendWelcomeEmail(studentName, email, generatedPassword);
+                
+                if (emailSent) {
+                    showToast(`Student added successfully! Username: ${studentName}, Password: ${generatedPassword}`, 'success');
+                    this.reset();
+                    displayStudents();
+                } else {
+                    // If email fails, still add the student but show a warning
+                    showToast(`Student added but welcome email could not be sent. Please try sending the welcome email again later.`, 'warning');
+                }
+            } catch (error) {
+                console.error('Error in form submission:', error);
+                showToast('An error occurred while adding the student. Please try again.', 'error');
+            }
+        });
+
+        // Function to validate email format
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Add email validation on input
+        document.getElementById('email').addEventListener('input', function(e) {
+            const email = e.target.value.trim();
+            if (email && !isValidEmail(email)) {
+                this.setCustomValidity('Please enter a valid email address');
+            } else if (email && !email.endsWith('@gmail.com')) {
+                this.setCustomValidity('Please enter a valid Gmail address');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Add password reset functionality
+        function resetPassword(studentId) {
+            const students = JSON.parse(localStorage.getItem('students'));
+            const student = students.find(s => s.id === studentId);
+            
+            if (student) {
+                const newPassword = generateSecurePassword(student.name);
+                student.password = newPassword;
+                student.lastPasswordChange = new Date().toISOString();
+                
+                localStorage.setItem('students', JSON.stringify(students));
+                showToast(`Password reset successful! New password: ${newPassword}`, 'success');
+            }
+        }
+
+        // Display students in the list
+        function displayStudents() {
+            const students = JSON.parse(localStorage.getItem('students'));
+            const studentList = document.getElementById('studentList');
+            
+            studentList.innerHTML = students.map(student => `
+                <div class="student-card">
+                    <div class="student-info">
+                        <h3>${student.name}</h3>
+                        <p><i class="fas fa-graduation-cap"></i> ${student.class} - ${student.division}</p>
+                        <p><i class="fas fa-user-friends"></i> ${student.parentName}</p>
+                        <p><i class="fas fa-envelope"></i> ${student.email}</p>
+                        <p><i class="fas fa-clock"></i> Last password change: ${new Date(student.lastPasswordChange).toLocaleDateString()}</p>
+                    </div>
+                    <div class="student-actions">
+                        <button onclick="toggleStudentStatus(${student.id})" class="status-btn ${student.isActive ? 'active' : 'inactive'}">
+                            ${student.isActive ? 'Active' : 'Inactive'}
+                        </button>
+                        <button onclick="resetPassword(${student.id})" class="reset-btn">
+                            <i class="fas fa-key"></i> Reset Password
+                        </button>
+                        <button onclick="deleteStudent(${student.id})" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle student status
+        function toggleStudentStatus(id) {
+            const students = JSON.parse(localStorage.getItem('students'));
+            const index = students.findIndex(s => s.id === id);
+            if (index !== -1) {
+                students[index].isActive = !students[index].isActive;
+                localStorage.setItem('students', JSON.stringify(students));
+                displayStudents();
+                showToast(`Student ${students[index].isActive ? 'activated' : 'deactivated'}!`, 'success');
+            }
+        }
+
+        // Delete student
+        function deleteStudent(id) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                const students = JSON.parse(localStorage.getItem('students'));
+                const filteredStudents = students.filter(s => s.id !== id);
+                localStorage.setItem('students', JSON.stringify(filteredStudents));
+                displayStudents();
+                showToast('Student deleted successfully!', 'success');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = `toast ${type}`;
+            toastMessage.textContent = message;
+            
+            toast.style.display = 'block';
+            toast.style.opacity = '1';
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Initial display of students
+        displayStudents();
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const students = JSON.parse(localStorage.getItem('students'));
+            const filteredStudents = students.filter(student => 
+                student.name.toLowerCase().includes(searchTerm) ||
+                student.email.toLowerCase().includes(searchTerm)
+            );
+            displayFilteredStudents(filteredStudents);
+        });
+
+        // Display filtered students
+        function displayFilteredStudents(students) {
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = students.map(student => `
+                <div class="student-card">
+                    <div class="student-info">
+                        <h3>${student.name}</h3>
+                        <p><i class="fas fa-graduation-cap"></i> ${student.class} - ${student.division}</p>
+                        <p><i class="fas fa-user-friends"></i> ${student.parentName}</p>
+                        <p><i class="fas fa-envelope"></i> ${student.email}</p>
+                    </div>
+                    <div class="student-actions">
+                        <button onclick="toggleStudentStatus(${student.id})" class="status-btn ${student.isActive ? 'active' : 'inactive'}">
+                            ${student.isActive ? 'Active' : 'Inactive'}
+                        </button>
+                        <button onclick="deleteStudent(${student.id})" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary Controller Login</title>
+    <link rel="stylesheet" href="pc-login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Animated Background -->
+        <div class="animated-background">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="login-box">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="./assets/abmi-logo.png" alt="ABMI Academy Logo" class="logo">
+                <h1>MARKAZ PUBLIC SCHOOL</h1>
+                <p class="tagline">Primary Controller Access</p>
+            </div>
+
+            <form id="pcLoginForm">
+                <div class="input-group">
+                    <label for="pcId">ID</label>
+                    <input type="text" id="pcId" name="pcId" required>
+                </div>
+                <div class="input-group">
+                    <label for="pcPassword">Password</label>
+                    <input type="password" id="pcPassword" name="pcPassword" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="redirect-section">
+                <a href="index.html" class="redirect-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Main Login
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="pc-login.js"></script>
+</body>
+</html> 

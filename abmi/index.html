@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - Login</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Animated Background -->
+        <div class="animated-background">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="login-content">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="./assets/abmi-logo.png" alt="ABMI Academy Logo" class="logo">
+                <h1>MARKAZ PUBLIC SCHOOL</h1>
+                <p class="tagline">Making the society AI- Driven</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+                <div class="user-type-toggle">
+                    <button class="toggle-btn active" data-type="student">Student</button>
+                    <div class="controller-section">
+                        <button class="toggle-btn controller-btn" data-type="controller" onclick="window.location.href='pc-login.html'">
+                            <i class="fas fa-user-shield"></i>
+                            Primary Controller
+                        </button>
+                        <p class="controller-description">Access administrative features and manage system settings</p>
+                    </div>
+                </div>
+
+                <form class="login-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-footer">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <span>Login</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>            </div>
+        </main>
+    </div>
+
+    <script src="./login.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Get students from localStorage
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+            
+            // Find student by email (username) and password
+            const student = students.find(s => 
+                s.email === username && 
+                s.password === password && 
+                s.isActive === true
+            );
+
+            if (student) {
+                // Store current user data
+                const user = {
+                    id: student.id,
+                    username: student.name,
+                    email: student.email,
+                    class: student.class,
+                    division: student.division,
+                    bio: {
+                        stats: {
+                            totalPoints: 0,
+                            attendance: {
+                                attended: 0,
+                                total: 0,
+                                percentage: 0
+                            }
+                        },
+                        achievements: []
+                    }
+                };
+
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'school-lab.html';
+            } else {
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Invalid credentials or account not activated';
+                
+                const form = document.querySelector('.login-form');
+                const existingError = form.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                form.insertBefore(errorDiv, form.firstChild);
+            }
+        });
+    </script>
+</body>
+</html> 

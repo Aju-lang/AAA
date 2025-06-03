@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - School Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="school-lab.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="loaded">
+    <div class="container">
+        <!-- Add Title Section -->
+        <header class="lab-header">
+            <div class="title-container">
+                <h1 class="lab-title">
+                    <i class="fas fa-school"></i>
+                    School Lab
+                </h1>
+                <div class="title-badges">
+                    <span class="badge">
+                        <i class="fas fa-trophy"></i>
+                        Competitions
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-users"></i>
+                        Staff
+                    </span>
+                </div>
+            </div>
+            <div class="lab-description">
+                Explore school achievements, competitions, and special programs
+            </div>
+        </header>
+
+        <main>
+            <!-- Competition Achievements Section -->
+            <section class="competitions-section">
+                <h2><i class="fas fa-medal"></i> Competition Achievements</h2>
+                <div class="competitions-grid">
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <h3>LSS (Little Science Scholar)</h3>
+                            <span class="badge">Latest</span>
+                        </div>
+                        <div class="winners-list">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="path/to/student1.jpg" alt="Student Name">
+                                    <span class="rank-badge">1st</span>
+                                </div>
+                                <div class="winner-details">
+                                    <h4>John Doe</h4>
+                                    <p class="class-info">Class: 10A</p>
+                                    <p class="score">Score: 95/100</p>
+                                </div>
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>Gold Medal</span>
+                                </div>
+                            </div>
+                            <!-- Add more winner cards as needed -->
+                        </div>
+                        <button class="view-all-btn">View All Winners</button>
+                    </div>
+
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <h3>USS (Upper Science Scholar)</h3>
+                        </div>
+                        <div class="winners-list">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="path/to/student2.jpg" alt="Student Name">
+                                    <span class="rank-badge">1st</span>
+                                </div>
+                                <div class="winner-details">
+                                    <h4>Jane Smith</h4>
+                                    <p class="class-info">Class: 8B</p>
+                                    <p class="score">Score: 92/100</p>
+                                </div>
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>Gold Medal</span>
+                                </div>
+                            </div>
+                            <!-- Add more winner cards as needed -->
+                        </div>
+                        <button class="view-all-btn">View All Winners</button>
+                    </div>
+
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <h3>YIP KALOLSAVAM</h3>
+                        </div>
+                        <div class="winners-list">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="path/to/student3.jpg" alt="Student Name">
+                                    <span class="rank-badge">1st</span>
+                                </div>
+                                <div class="winner-details">
+                                    <h4>Alex Johnson</h4>
+                                    <p class="class-info">Class: 9C</p>
+                                    <p class="score">Event: Classical Dance</p>
+                                </div>
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>First Prize</span>
+                                </div>
+                            </div>
+                            <!-- Add more winner cards as needed -->
+                        </div>
+                        <button class="view-all-btn">View All Winners</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- School Programs Section -->
+            <section class="programs-section">
+                <h2><i class="fas fa-calendar-day"></i> School Programs</h2>
+                <div class="programs-grid">
+                    <!-- Special Day Programs -->
+                    <div class="program-card special-day">
+                        <h3>Special Day Programs</h3>
+                        <ul class="program-list">
+                            <!-- Will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <!-- ABMI Classes -->
+                    <div class="program-card abmi-classes">
+                        <h3>ABMI Special Classes</h3>
+                        <ul class="class-list">
+                            <!-- Will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Staff Directory Section -->
+            <section class="staff-section">
+                <h2><i class="fas fa-users"></i> Our Staff</h2>
+                <div class="staff-filters">
+                    <button class="filter-btn active" data-filter="all">All Staff</button>
+                    <button class="filter-btn" data-filter="teaching">Teaching</button>
+                    <button class="filter-btn" data-filter="non-teaching">Non-Teaching</button>
+                </div>
+                <div class="staff-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Team Points Section -->
+            <section class="team-points-section">
+                <h2><i class="fas fa-users-class"></i> Team Points</h2>
+                <div class="team-points">
+                    <div class="team alpha">
+                        <div class="team-header">
+                            <h3>Team Alpha</h3>
+                            <span class="points-badge">1250 points</span>
+                        </div>
+                        <div class="points-bar">
+                            <div class="bar" style="width: 85%;"></div>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>Rank: 1st</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>Members: 25</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team beta">
+                        <div class="team-header">
+                            <h3>Team Beta</h3>
+                            <span class="points-badge">1100 points</span>
+                        </div>
+                        <div class="points-bar">
+                            <div class="bar" style="width: 75%;"></div>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>Rank: 2nd</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>Members: 23</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team gamma">
+                        <div class="team-header">
+                            <h3>Team Gamma</h3>
+                            <span class="points-badge">950 points</span>
+                        </div>
+                        <div class="points-bar">
+                            <div class="bar" style="width: 65%;"></div>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat">
+                                <i class="fas fa-trophy"></i>
+                                <span>Rank: 3rd</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>Members: 24</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="mentorship-lab.html" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Mentorship</span>
+            </a>
+            <a href="certificate-lab.html" class="nav-item">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+            <a href="school-lab.html" class="nav-item active">
+                <i class="fas fa-school"></i>
+                <span>School Lab</span>
+            </a>
+            <a href="leadership-lab.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Leadership</span>
+            </a>
+            <a href="about-me.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="school-lab.js"></script>
+</body>
+</html> 

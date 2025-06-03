@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - About Me</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about-me.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="loaded">
+    <div class="container">
+        <!-- Add Title Section -->
+        <header class="lab-header">
+            <div class="title-container">
+                <h1 class="lab-title">
+                    <i class="fas fa-user"></i>
+                    About Me
+                </h1>
+                <div class="title-badges">
+                    <span class="badge">
+                        <i class="fas fa-graduation-cap"></i>
+                        Academic
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-trophy"></i>
+                        Achievements
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-star"></i>
+                        Performance
+                    </span>
+                </div>
+            </div>
+            <div class="lab-description">
+                View your academic progress, achievements, and personal information
+            </div>
+        </header>
+
+        <main>
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <div class="profile-header">
+                    <img src="path/to/profile-pic.jpg" alt="Student Photo" class="profile-pic">
+                    <h1>John Doe</h1>
+                    <p class="grade">Grade 10 - Section A</p>
+                    <div class="student-details">
+                        <p><i class="fas fa-id-card"></i> ID: STU2024001</p>
+                        <p><i class="fas fa-envelope"></i> john.doe@abmi.edu</p>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Performance Section -->
+            <section class="academic-section">
+                <h2><i class="fas fa-chart-line"></i> Academic Performance</h2>
+                <div class="term-marks">
+                    <div class="term-card">
+                        <h3>Term 1</h3>
+                        <div class="marks">92%</div>
+                        <p>Grade: A+</p>
+                    </div>
+                    <div class="term-card">
+                        <h3>Term 2</h3>
+                        <div class="marks">88%</div>
+                        <p>Grade: A</p>
+                    </div>
+                    <div class="term-card">
+                        <h3>Term 3</h3>
+                        <div class="marks">95%</div>
+                        <p>Grade: A+</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Points & Rankings Section -->
+            <section class="points-section">
+                <h2><i class="fas fa-star"></i> Points & Rankings</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Total Points</h3>
+                        <p>2,450</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Class Rank</h3>
+                        <p>3rd</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Achievements</h3>
+                        <p>12</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="settings-section">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <div class="settings-container">
+                    <!-- Theme Toggle -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="fas fa-palette"></i>
+                            <h3>Theme</h3>
+                        </div>
+                        <div class="theme-toggle">
+                            <label class="switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                            <span class="theme-label">Dark Mode</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Password -->
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="fas fa-lock"></i>
+                            <h3>Change Password</h3>
+                        </div>
+                        <form id="changePasswordForm" class="password-form">
+                            <div class="input-group">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="oldPassword" placeholder="Current Password" required>
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="newPassword" placeholder="New Password" required>
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" placeholder="Confirm New Password" required>
+                            </div>
+                            <button type="submit" class="settings-btn">
+                                <i class="fas fa-save"></i>
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Logout -->
+                    <div class="settings-card logout-card">
+                        <div class="settings-header">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <h3>Logout</h3>
+                        </div>
+                        <button id="logoutBtn" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="mentorship-lab.html" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Mentorship</span>
+            </a>
+            <a href="certificate-lab.html" class="nav-item">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+            <a href="school-lab.html" class="nav-item">
+                <i class="fas fa-school"></i>
+                <span>School Lab</span>
+            </a>
+            <a href="leadership-lab.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Leadership</span>
+            </a>
+            <a href="about-me.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-sign-out-alt"></i>
+                <h3>Confirm Logout</h3>
+            </div>
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancelLogout">Cancel</button>
+                <button class="confirm-btn" id="confirmLogout">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="about-me.js"></script>
+</body>
+</html> 

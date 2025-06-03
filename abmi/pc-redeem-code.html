@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Code</title>
+    <link rel="stylesheet" href="pc-redeem-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-ticket-alt"></i> Redeem Code</h1>
+
+        <!-- Code Creation Form -->
+        <div class="code-creation">
+            <h2><i class="fas fa-key"></i> Create Redeem Code</h2>
+            <form id="codeForm">
+                <div class="form-group">
+                    <label for="codeName">Code Name/Purpose</label>
+                    <input type="text" id="codeName" placeholder="e.g., Certificate-1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Code (8 characters)</label>
+                    <div class="code-input-container">
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                        <input type="text" class="code-input" maxlength="1" pattern="[A-Za-z0-9]" required>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="timeLimit">Time Limit (days)</label>
+                        <input type="number" id="timeLimit" min="1" value="3" required>
+                    </div>
+                    <div class="setting-item">
+                        <label for="points">Points</label>
+                        <input type="number" id="points" min="1" value="15" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="codeDescription">Description</label>
+                    <textarea id="codeDescription" rows="3" placeholder="Enter code description..." required></textarea>
+                </div>
+
+                <button type="submit" class="action-button">
+                    <i class="fas fa-arrow-right"></i> Next
+                </button>
+            </form>
+        </div>
+
+        <!-- File Upload Section -->
+        <div class="file-upload-section" style="display: none;">
+            <h2><i class="fas fa-file-upload"></i> Upload Student List</h2>
+            <div class="file-upload" id="fileUpload">
+                <i class="fas fa-file-pdf"></i>
+                <p>Drag and drop your PDF file here or click to browse</p>
+                <input type="file" id="studentFile" accept=".pdf" style="display: none;">
+            </div>
+
+            <div class="student-list" style="display: none;">
+                <h3>Student List</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Division</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <!-- Student data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-box" style="display: none;">
+            <h2><i class="fas fa-eye"></i> Preview</h2>
+            <div class="preview-content">
+                <div class="preview-item">
+                    <i class="fas fa-ticket-alt"></i>
+                    <div>
+                        <h4>Code Name</h4>
+                        <p id="previewCodeName"></p>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <i class="fas fa-key"></i>
+                    <div>
+                        <h4>Code</h4>
+                        <p id="previewCode"></p>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Time Limit</h4>
+                        <p id="previewTimeLimit"></p>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <h4>Points</h4>
+                        <p id="previewPoints"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-button" id="applyCode" style="display: none;">
+                <i class="fas fa-check"></i> Apply Code
+            </button>
+            <button class="action-button secondary" id="previewCode" style="display: none;">
+                <i class="fas fa-eye"></i> Preview
+            </button>
+        </div>
+
+        <button onclick="window.location.href='pc-dashboard.html'" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="pc-dashboard.js"></script>
+</body>
+</html> 

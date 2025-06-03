@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary Controller Dashboard</title>
+    <link rel="stylesheet" href="pc-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Primary Controller Dashboard</h1>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="menu-grid">
+                <div class="menu-item" id="primaryData">
+                    <i class="fas fa-database"></i>
+                    <h3>Primary Data</h3>
+                </div>
+                <div class="menu-item" id="insertDatabase">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Insert Database</h3>
+                </div>
+                <div class="menu-item" id="editWeb">
+                    <i class="fas fa-edit"></i>
+                    <h3>Edit & Add to Web</h3>
+                </div>
+                <div class="menu-item" id="redeemCode">
+                    <i class="fas fa-gift"></i>
+                    <h3>Redeem Code</h3>
+                </div>
+                <div class="menu-item" id="pcSettings">
+                    <i class="fas fa-cog"></i>
+                    <h3>P.C. Settings</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="primaryDataModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Primary Data Management</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="upload-section">
+                    <h3>Upload Student Data (PDF)</h3>
+                    <div class="upload-box">
+                        <input type="file" id="pdfUpload" accept=".pdf" />
+                        <button id="uploadBtn" class="btn">Upload PDF</button>
+                    </div>
+                </div>
+                
+                <div class="manual-entry-section">
+                    <h3>Add Student Manually</h3>
+                    <form id="studentForm">
+                        <div class="form-group">
+                            <label for="studentName">Name:</label>
+                            <input type="text" id="studentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentClass">Class:</label>
+                            <input type="number" id="studentClass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentDivision">Division:</label>
+                            <input type="text" id="studentDivision" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentName">Parent Name:</label>
+                            <input type="text" id="parentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="place">Place:</label>
+                            <input type="text" id="place" required>
+                        </div>
+                        <button type="submit" class="btn">Add Student</button>
+                    </form>
+                </div>
+
+                <div class="student-list-section">
+                    <h3>Current Students</h3>
+                    <div class="student-list" id="studentList">
+                        <!-- Student list will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="pc-dashboard.js"></script>
+</body>
+</html> 

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Database</title>
+    <link rel="stylesheet" href="pc-insert-database.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-database"></i> Insert Database</h1>
+
+        <!-- Database Type Selection -->
+        <div class="db-type-selection">
+            <div class="db-type-card" data-type="common">
+                <i class="fas fa-globe"></i>
+                <h3>Common Data</h3>
+                <p>Visible to all labs except "About Me"</p>
+            </div>
+            <div class="db-type-card" data-type="particular">
+                <i class="fas fa-user"></i>
+                <h3>Particular Data</h3>
+                <p>Visible only inside individual "About Me" labs</p>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="card upload-section">
+            <h2><i class="fas fa-file-upload"></i> Upload Database File</h2>
+            <div class="upload-container">
+                <label for="dbFile" class="upload-label">
+                    <i class="fas fa-file-excel"></i> Choose Database File
+                </label>
+                <input type="file" id="dbFile" accept=".xlsx,.csv" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div id="uploadStatus"></div>
+            </div>
+        </div>
+
+        <!-- Lab Selection (for Common Data) -->
+        <div class="card lab-selection-section" style="display: none;">
+            <h2><i class="fas fa-flask"></i> Select Lab</h2>
+            <div class="lab-selection">
+                <div class="lab-card" data-lab="school">
+                    <i class="fas fa-school"></i>
+                    <h4>School Lab</h4>
+                </div>
+                <div class="lab-card" data-lab="leadership">
+                    <i class="fas fa-users"></i>
+                    <h4>Leadership Lab</h4>
+                </div>
+                <div class="lab-card" data-lab="mentorship">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Mentorship Lab</h4>
+                </div>
+                <div class="lab-card" data-lab="certificate">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Certificate Lab</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box Selection -->
+        <div class="card box-selection-section" style="display: none;">
+            <h2><i class="fas fa-box"></i> Select Box</h2>
+            <div class="box-selection">
+                <!-- Boxes will be dynamically added based on selected lab -->
+            </div>
+        </div>
+
+        <!-- Display Style Selection -->
+        <div class="card style-selection-section" style="display: none;">
+            <h2><i class="fas fa-paint-brush"></i> Choose Display Style</h2>
+            <div class="style-selection">
+                <div class="style-card" data-style="modern">
+                    <div class="style-preview" style="background: linear-gradient(45deg, #2563eb, #3b82f6);"></div>
+                    <h4>Modern</h4>
+                </div>
+                <div class="style-card" data-style="classic">
+                    <div class="style-preview" style="background: linear-gradient(45deg, #1e40af, #2563eb);"></div>
+                    <h4>Classic</h4>
+                </div>
+                <div class="style-card" data-style="minimal">
+                    <div class="style-preview" style="background: linear-gradient(45deg, #f8fafc, #e2e8f0);"></div>
+                    <h4>Minimal</h4>
+                </div>
+                <div class="style-card" data-style="elegant">
+                    <div class="style-preview" style="background: linear-gradient(45deg, #8b5cf6, #a78bfa);"></div>
+                    <h4>Elegant</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Data Preview -->
+        <div class="card sample-data">
+            <h2><i class="fas fa-table"></i> Sample Database Format</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Division</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arun V</td>
+                        <td>5</td>
+                        <td>B</td>
+                        <td>Phy-32, Che-30, Bio-40</td>
+                    </tr>
+                    <tr>
+                        <td>Ajay P</td>
+                        <td>5</td>
+                        <td>D</td>
+                        <td>Phy-30, Che-28, Bio-38</td>
+                    </tr>
+                    <tr>
+                        <td>Aju C</td>
+                        <td>6</td>
+                        <td>C</td>
+                        <td>Phy-49, Che-30, Bio-28</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-button" id="applyBtn">
+                <i class="fas fa-check"></i> Apply
+            </button>
+            <button class="action-button secondary" id="previewBtn">
+                <i class="fas fa-eye"></i> Preview
+            </button>
+        </div>
+
+        <button onclick="window.location.href='pc-dashboard.html'" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="pc-dashboard.js"></script>
+</body>
+</html> 

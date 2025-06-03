@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABMI ACADEMY - Mentorship</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./mentorship-lab.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="lab-header">
+            <div class="header-content">
+                <h1><i class="fas fa-chalkboard-teacher"></i> Mentorship Lab</h1>
+                <div class="search-section">
+                    <div class="search-bar">
+                        <input type="text" id="mentorSearch" placeholder="Search mentors, classes, or communities...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Class Schedule Section -->
+            <section class="schedule-section">
+                <div class="section-header">
+                    <h2>ABMI Classes</h2>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i> Grid
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i> List
+                        </button>
+                    </div>
+                </div>
+                <div class="classes-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Mentorship Section -->
+            <section class="mentors-section">
+                <h2>Our Expert Mentors</h2>
+                <div class="mentors-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Communities Section -->
+            <section class="communities-section">
+                <h2>Learning Communities</h2>
+                <div class="communities-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Resource Library -->
+            <section class="resource-section">
+                <h2>Resource Library</h2>
+                <div class="resources-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="mentorship-lab.html" class="nav-item active">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Mentorship</span>
+            </a>
+            <a href="certificate-lab.html" class="nav-item">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+            <a href="school-lab.html" class="nav-item">
+                <i class="fas fa-school"></i>
+                <span>School Lab</span>
+            </a>
+            <a href="leadership-lab.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Leadership</span>
+            </a>
+            <a href="about-me.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </a>
+        </nav>
+
+        <!-- Toast Notifications Container -->
+        <div id="toastContainer"></div>
+    </div>
+
+    <script src="./mentorship-lab.js"></script>
+</body>
+</html> 
